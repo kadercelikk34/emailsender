@@ -10,6 +10,7 @@ public class EmailSend {
     String content;
     LocalTime localTime;
     int version;
+    boolean status = false;
 
     public List<String> getTo() {
         return to;
@@ -57,5 +58,13 @@ public class EmailSend {
 
     public void setLocalTime(LocalTime localTime) {
         this.localTime = localTime;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

@@ -26,6 +26,16 @@ public class ProviderAService {
     @Autowired
     private EmailService emailService;
 
+    /**
+     * createWelcome metodu ile alınan parametreler ile email oluşturulur.
+     * Örnek Welcome
+     * -------------
+     * Subject: Hoşgeldiniz!
+     * Body: Sayın Firstname Lastname, aramıza hoşgeldiniz.
+     * @param firstName
+     * @param lastName
+     * @return
+     */
     public boolean createWelcome(String firstName, String lastName){
         EmailInit init = providerEmailUtils.init(ACCOUNT, PASSWORD, END_POINT);
         if (init != null) {
@@ -40,6 +50,16 @@ public class ProviderAService {
         return false;
     }
 
+    /**
+     * forgotPassword metodu ile örnek email cıktısı oluşturulur.
+     * Örnek Forgot Password
+     * ---------------------
+     * Subject: Şifre yenileme
+     * Body: Şifrenizi yenilemek için aşağıdaki linke tıklayınız
+     *       PasswordResetUrl
+     * @param passwordResetUrl
+     * @return
+     */
     public boolean forgotPassword(String passwordResetUrl){
         if (passwordResetUrl != null) {
             String subject = "Şifre yenileme";

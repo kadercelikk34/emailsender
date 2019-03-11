@@ -19,8 +19,6 @@ public class MailUtil {
 		SimpleMailMessage message = new SimpleMailMessage();
 
 		message.setFrom(from);
-		to.stream().forEach(s -> message.setTo(s));
-
 		message.setTo((String[]) to.toArray());
 		message.setCc((String[]) cc.toArray());
 		message.setSubject(subject);

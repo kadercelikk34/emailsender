@@ -17,6 +17,15 @@ public class EmailService {
     @Autowired
     private EmailRepository emailRepository;
 
+    /**
+     * saveEmail metodu ile email bilgileri veritabanına kayıt edilir.
+     * @param firstName
+     * @param lastName
+     * @param content
+     * @param endPointUrl
+     * @param type
+     * @return
+     */
     public boolean saveEmail(String firstName, String lastName, String content, String endPointUrl, EmailType type) {
         Email email = new Email();
         email.setAccount(firstName + " " + lastName);

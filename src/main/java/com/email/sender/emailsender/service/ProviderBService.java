@@ -22,6 +22,19 @@ public class ProviderBService {
     @Autowired
     private EmailService emailService;
 
+    /**
+     * newsLetter metodu ile alınan parametreler ile örnek email oluştrulur.
+     * Örnek Newsletter
+     * ----------------
+     * Subject: Firstname, NewsletterDate tarihli bültenimizi kaçırma
+     * Body: Merhaba Firstname Lastname;
+     *       Newsletter
+     * @param firstName
+     * @param lastName
+     * @param newsletterDate
+     * @param newsletter
+     * @return
+     */
     public boolean newsLetter(String firstName, String lastName, String newsletterDate, String newsletter){
 
         EmailInit init = providerEmailUtils.init(ACCOUNT, PASSWORD, END_POINT);
