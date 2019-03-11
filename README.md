@@ -1,5 +1,4 @@
-# emailsender
-Email atan uygulama
+# EmailSender (Email Atan Uygulama)
 ===================
 
 Bu çalışmada sizden aşağıdaki şartları karşılayan, kullanıcılara email yollayan bir uygulama yazmanız beklenmektedir.
