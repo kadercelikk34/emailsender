@@ -2,11 +2,18 @@ package com.email.sender.emailsender.utils;
 
 import com.email.sender.emailsender.models.EmailInit;
 import com.email.sender.emailsender.models.EmailSend;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 @Component
 public class ProviderEmailUtils {
+
+    @Autowired
+    MailUtil mailUtil;
 
     public  EmailInit init(String account, String password, String endPointUrl ){
         if (account == null || password == null || endPointUrl == null) {
@@ -27,10 +34,24 @@ public class ProviderEmailUtils {
         emailSend.setSubject(subject);
         emailSend.setContent(content);
         emailSend.setVersion(1);
+        emailSend.setLocalTime(LocalTime.now());
+        MyContext.add(emailSend);
 
-        //Email send yapılır send başarısız ise version arttırılır ve tekrar denenir
-        // eğer version 3 den büyük ise return false edilir
-
+        sendMail();
         return true;
+    }
+
+    @Async
+    protected void sendMail() {
+        for(EmailSend emailSend: MyContext.queue()) {
+            long between = ChronoUnit.SECONDS.between(emailSend.getLocalTime(), LocalTime.now());
+            if (between > 60 || emailSend.getVersion() < 3) {
+                try {
+                    mailUtil.sendMail("ets.challange@gmail.com", emailSend.getTo(), emailSend.getCc(), emailSend.getSubject(), emailSend.getContent());
+                } catch (Exception e){
+                    emailSend.setVersion(emailSend.getVersion() +1 );
+                }
+            }
+        }
     }
 }

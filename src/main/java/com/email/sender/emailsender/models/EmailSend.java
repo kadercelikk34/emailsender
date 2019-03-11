@@ -1,5 +1,6 @@
 package com.email.sender.emailsender.models;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public class EmailSend {
@@ -7,6 +8,7 @@ public class EmailSend {
     List<String> cc;
     String subject;
     String content;
+    LocalTime localTime;
     int version;
 
     public List<String> getTo() {
@@ -47,5 +49,13 @@ public class EmailSend {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public LocalTime getLocalTime() {
+        return localTime;
+    }
+
+    public void setLocalTime(LocalTime localTime) {
+        this.localTime = localTime;
     }
 }
